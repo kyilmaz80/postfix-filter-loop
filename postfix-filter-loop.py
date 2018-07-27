@@ -31,10 +31,10 @@ class CustomSMTPServer(smtpd.SMTPServer):
         :param data: message object as string
         :return:
         """
-        
+
         mailfrom.replace('\'', '')
         mailfrom.replace('\"', '')
-        
+
         for recipient in rcpttos:
             recipient.replace('\'', '')
             recipient.replace('\"', '')
@@ -84,22 +84,22 @@ class CustomSMTPServer(smtpd.SMTPServer):
             pass
         except smtplib.SMTPResponseException:
             logging.error('Exception SMTPResponseException')
-            pass        
+            pass
         except smtplib.SMTPSenderRefused:
             logging.error('Exception SMTPSenderRefused')
-            pass        
+            pass
         except smtplib.SMTPRecipientsRefused:
             logging.error('Exception SMTPRecipientsRefused')
-            pass        
+            pass
         except smtplib.SMTPDataError:
             logging.error('Exception SMTPDataError')
-            pass        
+            pass
         except smtplib.SMTPConnectError:
             logging.error('Exception SMTPConnectError')
-            pass        
+            pass
         except smtplib.SMTPHeloError:
             logging.error('Exception SMTPHeloError')
-            pass        
+            pass
         except smtplib.SMTPAuthenticationError:
             logging.error('Exception SMTPAuthenticationError')
             pass
@@ -121,6 +121,6 @@ if __name__ == "__main__":
     FILTER_SERVER_PORT = params.LPORT
 
     logging.info('------------------------------------------')
-    logging.info('Server is waiting for data on port: %s', FILTER_SERVER_PORT)
+    logging.info('Server is waiting for data on %s IP port: %s',FILTER_SERVER_IP, FILTER_SERVER_PORT)
     server = CustomSMTPServer((FILTER_SERVER_IP, FILTER_SERVER_PORT), None)
     asyncore.loop()
